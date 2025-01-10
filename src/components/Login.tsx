@@ -9,8 +9,10 @@ export function GoogleLogin() {
   const router = useRouter();
   const handleLogin = async () => {
     try {
-      await signInWithRedirect(auth, provider);
-      router.push("/dashboard");
+      const res = await signInWithRedirect(auth, provider);
+      if (res) {
+        router.push("/dashboard");
+      }
     } catch (error) {
       if (
         error instanceof FirebaseError &&
