@@ -1,3 +1,5 @@
+"use client";
+
 import { auth, provider } from "@/lib/firebase";
 import { signInWithRedirect } from "firebase/auth";
 import { useRouter } from "next/navigation";
