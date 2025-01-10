@@ -12,9 +12,8 @@ export function GoogleLogin() {
   const handleLogin = async () => {
     try {
       const res = await signInWithRedirect(auth, provider);
-      if (res) {
-        router.push("/dashboard");
-      }
+      console.log("res", res);
+      router.push("/dashboard");
     } catch (error) {
       if (
         error instanceof FirebaseError &&
