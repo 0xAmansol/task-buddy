@@ -17,7 +17,13 @@ export function GoogleLogin() {
         router.push("/dashboard");
       }
     } catch (error) {
-      console.log("error:", error);
+      if (error.code === "auth/popup-closed-by-user") {
+        console.log(
+          "The popup was closed by the user before completing the sign-in."
+        );
+      } else {
+        console.log("error:", error);
+      }
     }
   };
   return (
