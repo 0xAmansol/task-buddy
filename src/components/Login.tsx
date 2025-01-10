@@ -10,6 +10,7 @@ export function GoogleLogin() {
   const router = useRouter();
   const handleLogin = async () => {
     try {
+      provider.setCustomParameters({ display: "popup" });
       const res = await signInWithPopup(auth, provider);
       console.log("user info:", res.user);
       if (res.user) {
