@@ -16,7 +16,7 @@ export function GoogleLogin() {
       console.log("user info:", res.user);
       if (res.user) {
         console.log("Login successful");
-        router.replace("/dashboard");
+        router.push("/dashboard");
       }
     } catch (error) {
       if (
