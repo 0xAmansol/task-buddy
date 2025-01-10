@@ -1,7 +1,5 @@
-"use client";
-
 import { auth, provider } from "@/lib/firebase";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithRedirect } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import React from "react";
 import InteractiveHoverButton from "./ui/interactive-hover-button";
@@ -11,13 +9,8 @@ export function GoogleLogin() {
   const router = useRouter();
   const handleLogin = async () => {
     try {
-      provider.setCustomParameters({ display: "popup" });
-      const res = await signInWithPopup(auth, provider);
-      console.log("user info:", res.user);
-      if (res.user) {
-        console.log("Login successful");
-        router.push("/dashboard");
-      }
+      await signInWithRedirect(auth, provider);
+      router.push("/dashboard");
     } catch (error) {
       if (
         error instanceof FirebaseError &&
