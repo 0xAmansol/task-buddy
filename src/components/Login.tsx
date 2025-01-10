@@ -5,6 +5,7 @@ import { signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import React from "react";
 import InteractiveHoverButton from "./ui/interactive-hover-button";
+import { FirebaseError } from "firebase/app";
 
 export function GoogleLogin() {
   const router = useRouter();
@@ -18,7 +19,10 @@ export function GoogleLogin() {
         router.push("/dashboard");
       }
     } catch (error) {
-      if (error.code === "auth/popup-closed-by-user") {
+      if (
+        error instanceof FirebaseError &&
+        error.code === "auth/popup-closed-by-user"
+      ) {
         console.log(
           "The popup was closed by the user before completing the sign-in."
         );
